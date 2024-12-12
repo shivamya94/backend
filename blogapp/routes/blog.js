@@ -3,10 +3,9 @@ const router = express.Router();
 
 
 // import Controller
-const {dummyLink} = require("../controllers/LikeController");
+const {dummyLink, likePost} = require("../controllers/LikeController");
 const { createComment } = require("../controllers/CommentController");
-const { createPost} = require("../controllers/postController");
-
+const { createPost, getAllPosts} = require("../controllers/postController");
 
 
 
@@ -14,7 +13,8 @@ const { createPost} = require("../controllers/postController");
 router.get("/dummyroute",dummyLink);
 router.post("/comments/create",createComment);
 router.post("/posts/create",createPost);
-
+router.get("/posts",getAllPosts);
+router.post("/likes/like",likePost);
 
 
 
