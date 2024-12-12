@@ -3,13 +3,15 @@ const router = express.Router();
 
 
 // import Controller
-const {dummyLink} = require("../controllers/LikeController")
+const {dummyLink} = require("../controllers/LikeController");
+const { createComment } = require("../controllers/CommentController");
 
 
 
 
 //mapping Create
 router.get("/dummyroute",dummyLink);
+router.post("/comments/create",createComment);
 
 
 

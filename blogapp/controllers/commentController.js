@@ -10,16 +10,26 @@ exports.createComment = async (req,res) => {
         //fetch data from req body
         const {post, user, body} = req.body;
         //create a connect object 
-        const Comment = new Comment({
+        const comment = new Comment({
             post,user,body
         });
 
         //save the new comment into the database
-        const savedComment = await Comment.save();
+        const savedComment = await comment.save();
         
+        //find the post by ID , add the new comment to its comments array
+        const updatedPost = await Post.findByIdAndUpdate(post, {$push : {comments: savedComment._id}}, {new: true} )
+                            .populate("commnets") //populate the commnets array with comment documents
+                            .exec();
+        res.json({
+            post: updatedPost,
+        });
         
     }
     catch(error) {
+        return res.status(500).json({
+            error: "Error while Creating commnet",
+        });
 
     }
-}
+};
