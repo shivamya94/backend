@@ -24,7 +24,7 @@ exports.createComment = async (req,res) => {
         res.json({
             post: updatedPost,
         });
-        
+       
     }
     catch(error) {
         return res.status(500).json({
