@@ -5,6 +5,7 @@ exports.createTodo = async(req,res) => {
     try {
         //extract title and description from request body
         const {title,description} = req.body;
+
         //create a new Todo obj and insert in DB
         const resoponse = await Todo.create({title,description});
         //send a json resoponse with a success flag
@@ -16,6 +17,7 @@ exports.createTodo = async(req,res) => {
             }
         );
 
+        
     }
     catch(err) {
         console.error(err);
