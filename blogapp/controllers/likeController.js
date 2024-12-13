@@ -15,7 +15,10 @@ exports.likePost = async (req,res) => {
         const savedLike = await like.save();
 
         //update the post collection basus on this
-        const updatedPost = await Post.findByIdAndUpdate(post, {$push: {likes: savedLike._id} }, {new:true});
+        const updatedPost = await Post.findByIdAndUpdate(post, {$push: {likes: savedLike._id} }, {new:true})
+        .populate("Likes").exec();
+
+
         res.json({
             post:updatedPost,
         });
