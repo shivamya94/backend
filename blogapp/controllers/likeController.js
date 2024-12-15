@@ -1,6 +1,5 @@
 //import models
 
-
 const Post = require("../models/postModel");
 const Like = require("../models/likeModel");
 
@@ -33,28 +32,6 @@ exports.likePost = async (req,res) => {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
