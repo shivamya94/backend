@@ -24,7 +24,11 @@ exports.signup = async (req,res) => {
 
         }
         catch(err) {
-            
+            return res.status(500).json({
+                success: false,
+                message: 'Error in hashing Password',
+            });
+
         }
 
     }
