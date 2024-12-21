@@ -13,7 +13,7 @@ exports.signup = async (req,res) => {
         if(existingUser) {
             return res.status(400).json({
                 success:false,
-                message:`User already Exists`,
+                message:'User already Exists',
             });
         }
 
@@ -31,8 +31,24 @@ exports.signup = async (req,res) => {
 
         }
 
+        //catching entry for user
+        const user = await user.create({
+            name,email,password:hashedPassword,role
+        })
+
+        return res.status(200).json({
+            success:true,
+            message:'User Created Successfully',
+        });
+
     }
-    catch(err) {
+    catch(error) {
+        console.error(error);
+        return res.status(500).json({
+            success:false,
+            message:'User cannot be registered, please try again later',
+        })
+
 
     }
 }
