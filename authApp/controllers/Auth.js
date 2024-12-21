@@ -8,8 +8,19 @@ exports.signup = async (req,res) => {
         //get data
         const {name,email,password,role} = req.body;
         //check if user already exist
-        const existinguser = await user.findOne({email});
+        const existingUser = await user.findOne({email});
         
+        if(existingUser) {
+            return res.status(400).json({
+                success:false,
+                message:`User already Exists`,
+            });
+        }
+
+        //secure password
+        try{
+            
+        }
 
     }
     catch(err) {
