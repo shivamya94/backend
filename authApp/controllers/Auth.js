@@ -18,7 +18,12 @@ exports.signup = async (req,res) => {
         }
 
         //secure password
+        let hashedPassword;
         try{
+            hashedPassword = await bcrypt.hash(password, 10);
+
+        }
+        catch(err) {
             
         }
 
