@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-
+const jwt = require("jsonwebtoken");
 
 //signup route handler
 exports.signup = async (req,res) => {
@@ -48,5 +48,45 @@ exports.signup = async (req,res) => {
             success:false,
             message:'User cannot be registered, please try again later',
         })
+    }
+}
+//user login
+exports.login = async (req,res) => {
+    try{
+        //fetch data
+        const {email,password} = req.body;
+        //validation on email and password
+        if(!email || !password) {
+            return res.status(400).json({
+                success:false,
+                message:'please fill all the details carefully',
+            });
+        }
+
+        //check for register user
+        const user = await User.findOne({email});
+        //if not a register user
+        if(!user) {
+            return res.status(401).json({
+                success:false,
+                message:'User is not registerd',
+            });
+        }
+
+        //verify password & generate a JWT token
+        if(await bcrypt.compare(password,user.password)){
+
+        }
+        else{
+            //password do not match
+            return res.status(403).json({
+                success:false,
+                message:"Password Incorrect",
+            });
+        }
+
+    }
+    catch(error){
+
     }
 }
