@@ -10,11 +10,11 @@ require("./config/database").connect();
 
 //route import and mount
 const user = require("./routes/user");
-app.use("api/v1",user);
+app.use("/api/v1", user);
 
-//activities
+//activate
 
-app.listen(PORT,() => {
+app.listen(PORT, () => {
     console.log(`App is listening at ${PORT}`);
     
 })
